@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".lectorCodigoBarras.PrincipalLectorActivity" >
         </activity>
+        <activity android:name=".lectorCodigoBarras.BarcodeCaptureActivity" >
+        </activity>
     </application>
 
 </manifest>
