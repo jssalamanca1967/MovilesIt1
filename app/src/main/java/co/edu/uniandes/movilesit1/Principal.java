@@ -52,9 +52,11 @@ public class Principal extends AppCompatActivity {
         ArrayList<Camara> lista = new ArrayList<>();
 
         for(int i = 0; i < 30; i++){
-            Camara nueva = new Camara("" + i , "45MP" + i, "12" + i, "34" + i, "45" + i, "67" + i, "34Mt" + i, "45", "45", "324", "235ear", "zdfg", "sdf", "434");
+            Camara nueva = new Camara("123456" + i , "45MP" + i, "12" + i, "34" + i, "45" + i, "67" + i, "34Mt" + i, "45", "45", "324", "235ear", "zdfg", "sdf", "434");
             lista.add(nueva);
         }
+
+        Camara nueva = new Camara("agmb90201011050" , "45MP", "18", "14" , "45", "28", "12m", "78", "23", "4", "4V", "23", "45", "4");
 
         dbAdmin.agregarCamaras(lista);
 
