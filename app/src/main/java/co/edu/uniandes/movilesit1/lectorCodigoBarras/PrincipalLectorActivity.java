@@ -11,8 +11,12 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import java.util.ArrayList;
+
 import co.edu.uniandes.movilesit1.Mensajes;
+import co.edu.uniandes.movilesit1.Principal;
 import co.edu.uniandes.movilesit1.R;
+import co.edu.uniandes.movilesit1.modelo.VerCamarasActivity;
 
 
 public class PrincipalLectorActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,6 +26,8 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
     private CompoundButton useFlash;
     private TextView statusMessage;
     private TextView barcodeValue;
+
+    private String codigoBarras;
 
     private static final int RC_BARCODE_CAPTURE = 9001;
     private static final String TAG = "BarcodeMain";
@@ -40,12 +46,6 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
         findViewById(R.id.read_barcode).setOnClickListener(this);
     }
 
-    public void leerCodigoBarras(View view) {
-
-        Mensajes.toast(this, "Cargando", true);
-        Mensajes.alertDialog(this, "Estamos cargando");
-
-    }
 
     /**
      * Called when a view has been clicked.
@@ -97,6 +97,10 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
                     statusMessage.setText(R.string.barcode_success);
                     barcodeValue.setText(barcode.displayValue);
 
+                    codigoBarras = barcode.displayValue;
+
+                    enviarCodigoBarras();
+
                     Log.d(TAG, "Barcode read: " + barcode.displayValue);
                 } else {
                     statusMessage.setText(R.string.barcode_failure);
@@ -110,5 +114,25 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    public void enviarCodigoBarras(){
+
+        if(Principal.camarasActuales == null)
+            Principal.camarasActuales = new ArrayList<>();
+
+        System.out.println(".................................. " + codigoBarras);
+
+        Principal.camarasActuales.clear();
+        Principal.camarasActuales.addAll(Principal.dbAdmin.buscarCamara(codigoBarras));
+
+        System.out.println(Principal.camarasActuales.size());
+
+        Mensajes.alertDialog(this, "Se encontraron " + Principal.camarasActuales.size() + " camaras");
+
+        Intent intent = new Intent(this, VerCamarasActivity.class);
+
+        startActivity(intent);
+
     }
 }

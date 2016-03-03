@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">CamerApp</string>
+    <string name="app_name">Security Camera Installer</string>
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="permission_camera_rationale">Se necesita autorizar el acceso a la cámara</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
     <string name="title_activity_main">Barcode Reader Sample</string>
@@ -12,4 +12,27 @@
     <string name="barcode_success">Barcode read successfully</string>
     <string name="barcode_failure">No barcode captured</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
+
+    <string name="ver_camaras">"Cámaras"</string>
+    <string name="ver_camaras_reporte">"Cámaras seleccionadas para crear el reporte"</string>
+    <string name="ver_camara">"Informarción"</string>
+
+    <string name="codigoBarras">Código de Barras</string>
+    <string name="videoQuality">Resolución</string>
+    <string name="minimumIllumination">Iluminación mínima</string>
+    <string name="dayNightMode">Modos de día - noche</string>
+    <string name="backlightCompensation">Compensación de luz de fondo</string>
+    <string name="viewingAngle">Ángulo de visión</string>
+    <string name="nightVisionDistance">Distancia de visión nocturna</string>
+    <string name="iRCutFilter">Filtro de corte de infrarrojo</string>
+    <string name="indoorOutdoor">Interiores / Exteriores</string>
+    <string name="operatingPower">Consumo de energía</string>
+    <string name="operationTemperature">Temperatura de operación</string>
+    <string name="bodyConstruction">Material</string>
+    <string name="cameraStandDimensions">Dimensiones</string>
+    <string name="cameraStandWeight">Peso</string>
+    <string name="enviar_reporte">Enviar reporte</string>
+    <string name="escoger_contacto">Escoger Contacto</string>
+    <string name="enviar_sms">Enviar Reporte Via SMS</string>
+
 </resources>

@@ -6,8 +6,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Principal">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear DB"
+        android:id="@+id/crear_db"
+        android:onClick="crearDB"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/poblar_db" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poblar DB"
+        android:id="@+id/poblar_db"
+        android:onClick="poblarDB"
+        android:layout_below="@+id/crear_db"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/ver_camaras" />-->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver camaras"
+        android:id="@+id/ver_camaras"
+        android:onClick="verCamaras"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -15,7 +39,18 @@
         android:text="Leer código de barras"
         android:id="@+id/read_barcode"
         android:onClick="leerCodigoBarras"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/ver_camaras"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar Reporte"
+        android:id="@+id/enviar_reporte"
+        android:onClick="enviarReporte"
+        android:layout_below="@+id/read_barcode"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
