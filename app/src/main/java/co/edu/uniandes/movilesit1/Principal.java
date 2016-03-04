@@ -56,7 +56,8 @@ public class Principal extends AppCompatActivity {
             lista.add(nueva);
         }
 
-        Camara nueva = new Camara("agmb90201011050" , "45MP", "18", "14" , "45", "28", "12m", "78", "23", "4", "4V", "23", "45", "4");
+        Camara nueva = new Camara("AGMB90201011050" , "45MP", "18", "14" , "45", "28", "12m", "78", "23", "4", "4V", "23", "45", "4");
+
 
         dbAdmin.agregarCamaras(lista);
 

@@ -205,37 +205,45 @@ public class DBAdmin {
         String pcameraStandDimensions = "";
         String pcameraStandWeight = "";
 
+        int encontrados = c.getCount();
+
+        System.out.println("sadfhjfgjkgfdsaDAKLFGÑHJKFDSAGHFJKLFGD: " + c.getCount());
+
         c.moveToFirst();
 
-        while(true){
 
-            pcodigoBarras = c.getString(0);
-            pvideoQuality = c.getString(1);
-            pminimumIllumination = c.getString(2);
-            pdayNightMode = c.getString(3);
-            pbacklightCompensation = c.getString(4);
-            pviewingAngle = c.getString(5);
-            pnightVisionDistance = c.getString(6);
-            piRCutFilter = c.getString(7);
-            pindoorOutdoor = c.getString(8);
-            poperatingPower = c.getString(9);
-            poperationTemperature = c.getString(10);
-            pbodyConstruction = c.getString(11);
-            pcameraStandDimensions = c.getString(12);
-            pcameraStandWeight = c.getString(13);
+        if(encontrados > 0) {
 
-            Camara nueva = new Camara(pcodigoBarras, pvideoQuality, pminimumIllumination,
-                    pdayNightMode, pbacklightCompensation, pviewingAngle, pnightVisionDistance,
-                    piRCutFilter, pindoorOutdoor, poperatingPower, poperationTemperature,
-                    pbodyConstruction, pcameraStandDimensions, pcameraStandWeight);
+            while (true) {
 
-            lista.add(nueva);
+                pcodigoBarras = c.getString(0);
+                pvideoQuality = c.getString(1);
+                pminimumIllumination = c.getString(2);
+                pdayNightMode = c.getString(3);
+                pbacklightCompensation = c.getString(4);
+                pviewingAngle = c.getString(5);
+                pnightVisionDistance = c.getString(6);
+                piRCutFilter = c.getString(7);
+                pindoorOutdoor = c.getString(8);
+                poperatingPower = c.getString(9);
+                poperationTemperature = c.getString(10);
+                pbodyConstruction = c.getString(11);
+                pcameraStandDimensions = c.getString(12);
+                pcameraStandWeight = c.getString(13);
 
-            if(c.isLast())
-                break;
+                Camara nueva = new Camara(pcodigoBarras, pvideoQuality, pminimumIllumination,
+                        pdayNightMode, pbacklightCompensation, pviewingAngle, pnightVisionDistance,
+                        piRCutFilter, pindoorOutdoor, poperatingPower, poperationTemperature,
+                        pbodyConstruction, pcameraStandDimensions, pcameraStandWeight);
 
-            c.moveToNext();
+                lista.add(nueva);
 
+                if (c.isLast())
+                    break;
+
+                c.moveToNext();
+
+            }
         }
 
         c.close();

@@ -78,7 +78,7 @@ public class EnviarSMSActivity extends AppCompatActivity {
 //
 //                sms.sendMultipartTextMessage(phoneNumber, null, parts, sendList, deliverList);
 
-                //mensaje = "Test message";
+                mensaje = "Test message";
 
                 try {
                     manejador.sendTextMessage(numeroTelefonico, null, mensaje, null, null);
