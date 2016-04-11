@@ -1,5 +1,8 @@
 package co.edu.uniandes.movilesit1.modelo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by John on 02/03/2016.
  */
@@ -89,6 +92,29 @@ public class Camara {
      * Peso
      */
     public String cameraStandWeight;
+
+    /**
+     * Id de la cámara en la base de datos
+     */
+    public int id;
+
+    public Camara(JSONObject camara) throws JSONException {
+        id = camara.getInt("id");
+        codigoBarras = camara.getString("codigoBarras");
+        videoQuality = camara.getString("videoQuality");
+        minimumIllumination = camara.getString("minimumIllumination");
+        dayNightMode = camara.getString("dayNightMode");
+        backlightCompensation = camara.getString("backlightCompensation");
+        viewingAngle = camara.getString("viewingAngle");
+        nightVisionDistance = camara.getString("nightVisionDistance");
+        iRCutFilter = camara.getString("iRCutFilter");
+        indoorOutdoor = camara.getString("indoorOutdoor");
+        operatingPower = camara.getString("operatingPower");
+        operationTemperature = camara.getString("operationTemperature");
+        bodyConstruction = camara.getString("bodyConstruction");
+        cameraStandDimensions = camara.getString("cameraStandDimensions");
+        cameraStandWeight = camara.getString("cameraStandWeight");
+    }
 
 
     public Camara(String pCodigoBarras, String pvideoQuality,String pminimumIllumination,String pdayNightMode,

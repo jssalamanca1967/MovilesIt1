@@ -1,6 +1,7 @@
 package co.edu.uniandes.movilesit1;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import co.edu.uniandes.movilesit1.database.DBAdmin;
 import co.edu.uniandes.movilesit1.lectorCodigoBarras.PrincipalLectorActivity;
 import co.edu.uniandes.movilesit1.modelo.Camara;
 import co.edu.uniandes.movilesit1.modelo.VerCamarasActivity;
+import co.edu.uniandes.movilesit1.web.Rest;
 
 public class Principal extends AppCompatActivity {
 
@@ -20,6 +22,10 @@ public class Principal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
@@ -70,7 +76,12 @@ public class Principal extends AppCompatActivity {
 
         camarasActuales.clear();
 
-        camarasActuales.addAll(dbAdmin.obtenerCamaras());
+        try{
+            Rest.darCamaras(camarasActuales);
+        }catch(Exception e){
+            e.printStackTrace();
+            camarasActuales.addAll(dbAdmin.obtenerCamaras());
+        }
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
 
