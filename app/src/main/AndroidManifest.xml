@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -43,6 +42,10 @@
         <activity android:name=".ReporteActivity" >
         </activity>
         <activity android:name=".EnviarSMSActivity" >
+        </activity>
+        <activity android:name=".EmailActivity" >
+        </activity>
+        <activity android:name=".AgregarEmailActivity" >
         </activity>
     </application>
 

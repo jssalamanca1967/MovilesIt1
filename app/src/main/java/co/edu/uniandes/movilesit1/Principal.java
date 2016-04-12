@@ -19,6 +19,7 @@ public class Principal extends AppCompatActivity {
     public static DBAdmin dbAdmin;
     public static ArrayList<Camara> camarasActuales;
     public static ArrayList<Camara> camarasReporte;
+    public static ArrayList<String> emails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class Principal extends AppCompatActivity {
 
         camarasActuales = new ArrayList<>();
         camarasReporte = new ArrayList<>();
+        emails = new ArrayList<>();
 
         crearDB();
         poblarDB();
@@ -84,6 +86,7 @@ public class Principal extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
+
 
         startActivity(intent);
 

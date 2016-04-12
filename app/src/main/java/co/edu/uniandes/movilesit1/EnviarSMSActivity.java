@@ -64,8 +64,6 @@ public class EnviarSMSActivity extends AppCompatActivity {
 
                 }
 
-                Mensajes.toast(this, numeroTelefonico, false);
-
 
                 SmsManager manejador = SmsManager.getDefault();
 //                ArrayList<String> parts = manejador.divideMessage(mensaje);

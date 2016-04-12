@@ -82,7 +82,7 @@ public class ReporteActivity extends AppCompatActivity implements AdapterView.On
 
     public void enviarReporte(){
 
-        Intent intent = new Intent(this, EnviarSMSActivity.class);
+        Intent intent = new Intent(this, EmailActivity.class);
 
         startActivity(intent);
     }

@@ -35,4 +35,14 @@
     <string name="escoger_contacto">Escoger Contacto</string>
     <string name="enviar_sms">Enviar Reporte Via SMS</string>
 
+    <string name="enviar_correo">Enviar Reporte Via E-mail</string>
+    <string name="agregar_correo">Agregar E-mail</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="txt_lista_mail">Lista E-mail</string>
+    <string name="txt_lista_mail_2">Los E-mails a los que se enviará el reporte</string>
+
+    <string name="txt_nuevo_email">Agregar E-mail</string>
+    <string name="aceptar">Aceptar</string>
+
+
 </resources>

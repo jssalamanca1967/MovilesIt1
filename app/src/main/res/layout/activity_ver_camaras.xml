@@ -23,8 +23,7 @@
         android:id="@+id/listaCamaras"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/tituloVerCamaras"
-        android:layout_above="@+id/button2" />
+        android:layout_below="@+id/tituloVerCamaras" />
 
 
 
