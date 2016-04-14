@@ -11,16 +11,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import co.edu.uniandes.movilesit1.mensajeria.Email;
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.Camara;
 
-public class EmailActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener, DialogInterface.OnClickListener {
+public class EmailActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
 
     public ListView lista;
+    public Ayudante ayudante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
+
+        ayudante = Ayudante.darInstancia();
+
+        ayudante.emails.add("js.salamanca1967@uniandes.edu.co");
 
         poblarLista();
 
@@ -38,9 +44,9 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
         String mensaje = "Las cámaras a instalar serán las siguientes:";
 
-        for(int i = 0; i < Principal.camarasReporte.size(); i++){
+        for(int i = 0; i < ayudante.camarasReporte.size(); i++){
 
-            Camara camara = Principal.camarasReporte.get(i);
+            Camara camara = ayudante.camarasReporte.get(i);
 
             mensaje += "Cámara " + (i+1);
             mensaje += "Código de Barras: " + camara.codigoBarras + "Resolución: "
@@ -59,14 +65,14 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
         }
 
-        String[] email = new String[Principal.emails.size()];
+        String[] email = new String[ayudante.emails.size()];
 
         for(int i = 0; i < email.length; i++){
-            email[i] = Principal.emails.get(i);
+            email[i] = ayudante.emails.get(i);
         }
 
         try {
-            Email.enviarCorreo(mensaje, email, this);
+            Email.enviarCorreo(mensaje, email);
         } catch (Exception e) {
             Mensajes.alertDialog(this, e.getMessage());
         }
@@ -81,10 +87,10 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void poblarLista(){
 
-        String[] email = new String[Principal.emails.size()];
+        String[] email = new String[ayudante.emails.size()];
 
         for(int i = 0; i < email.length; i++){
-            email[i] = Principal.emails.get(i);
+            email[i] = ayudante.emails.get(i);
         }
 
         lista = (ListView) findViewById(R.id.listaMail);
@@ -102,13 +108,13 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-        String mail = Principal.emails.get(position);
+        String mail = ayudante.emails.get(position);
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Desea eliminar el correo " + mail + "?")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Principal.emails.remove(position);
+                        ayudante.emails.remove(position);
                         poblarLista();
                     }
                 })
@@ -123,8 +129,4 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
         return false;
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
 }

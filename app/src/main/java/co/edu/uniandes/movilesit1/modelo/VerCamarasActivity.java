@@ -14,15 +14,21 @@ import co.edu.uniandes.movilesit1.R;
 
 public class VerCamarasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    public Ayudante ayudante;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_camaras);
 
-        Camara[] camaras = new Camara[Principal.camarasActuales.size()];
+        System.out.println("" + ayudante);
+
+        ayudante = Ayudante.darInstancia();
+
+        Camara[] camaras = new Camara[ayudante.camarasActuales.size()];
 
         for(int i = 0; i < camaras.length; i++){
-            camaras[i] = Principal.camarasActuales.get(i);
+            camaras[i] = ayudante.camarasActuales.get(i);
         }
 
         ListView lista = (ListView) findViewById(R.id.listaCamaras);

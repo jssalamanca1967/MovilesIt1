@@ -93,13 +93,7 @@ public class Camara {
      */
     public String cameraStandWeight;
 
-    /**
-     * Id de la cámara en la base de datos
-     */
-    public int id;
-
     public Camara(JSONObject camara) throws JSONException {
-        id = camara.getInt("id");
         codigoBarras = camara.getString("codigoBarras");
         videoQuality = camara.getString("videoQuality");
         minimumIllumination = camara.getString("minimumIllumination");

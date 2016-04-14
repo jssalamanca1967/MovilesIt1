@@ -10,16 +10,15 @@ import java.util.ArrayList;
 
 import co.edu.uniandes.movilesit1.database.DBAdmin;
 import co.edu.uniandes.movilesit1.lectorCodigoBarras.PrincipalLectorActivity;
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.Camara;
 import co.edu.uniandes.movilesit1.modelo.VerCamarasActivity;
 import co.edu.uniandes.movilesit1.web.Rest;
 
 public class Principal extends AppCompatActivity {
 
-    public static DBAdmin dbAdmin;
-    public static ArrayList<Camara> camarasActuales;
-    public static ArrayList<Camara> camarasReporte;
-    public static ArrayList<String> emails;
+    public Ayudante ayudante;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +29,9 @@ public class Principal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        dbAdmin = new DBAdmin(getApplicationContext());
+        ayudante = Ayudante.darInstancia();
 
-        camarasActuales = new ArrayList<>();
-        camarasReporte = new ArrayList<>();
-        emails = new ArrayList<>();
+        ayudante.dbAdmin = new DBAdmin(getApplicationContext());
 
         crearDB();
         poblarDB();
@@ -52,7 +49,7 @@ public class Principal extends AppCompatActivity {
 
     public void crearDB() {
 
-        dbAdmin = new DBAdmin(getApplicationContext());
+        ayudante.dbAdmin = new DBAdmin(getApplicationContext());
     }
 
     public void poblarDB() {
@@ -67,22 +64,22 @@ public class Principal extends AppCompatActivity {
         Camara nueva = new Camara("AGMB90201011050" , "45MP", "18", "14" , "45", "28", "12m", "78", "23", "4", "4V", "23", "45", "4");
 
 
-        dbAdmin.agregarCamaras(lista);
+        ayudante.dbAdmin.agregarCamaras(lista);
 
     }
 
     public void verCamaras(View view) {
 
-        if(camarasActuales == null)
-            camarasActuales = new ArrayList<>();
+        if(ayudante.camarasActuales == null)
+            ayudante.camarasActuales = new ArrayList<>();
 
-        camarasActuales.clear();
+        ayudante.camarasActuales.clear();
 
         try{
-            Rest.darCamaras(camarasActuales);
+            Rest.darCamaras(ayudante.camarasActuales);
         }catch(Exception e){
             e.printStackTrace();
-            camarasActuales.addAll(dbAdmin.obtenerCamaras());
+            ayudante.camarasActuales.addAll(ayudante.dbAdmin.obtenerCamaras());
         }
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
@@ -94,13 +91,13 @@ public class Principal extends AppCompatActivity {
 
     public void verCamara(String codigoBarras){
 
-        if(camarasActuales == null)
-            camarasActuales = new ArrayList<>();
+        if(ayudante.camarasActuales == null)
+            ayudante.camarasActuales = new ArrayList<>();
 
-        camarasActuales.clear();
-        camarasActuales.addAll(dbAdmin.buscarCamara(codigoBarras));
+        ayudante.camarasActuales.clear();
+        ayudante.camarasActuales.addAll(ayudante.dbAdmin.buscarCamara(codigoBarras));
 
-        System.out.println(camarasActuales.size());
+        System.out.println(ayudante.camarasActuales.size());
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
 
@@ -113,8 +110,5 @@ public class Principal extends AppCompatActivity {
         Intent intent = new Intent(this, ReporteActivity.class);
 
         startActivity(intent);
-
-
-
     }
 }

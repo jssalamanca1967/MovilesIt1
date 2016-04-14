@@ -7,12 +7,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
+
 public class AgregarEmailActivity extends AppCompatActivity {
+
+    public Ayudante ayudante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_email);
+
+        ayudante = Ayudante.darInstancia();
     }
 
 
@@ -22,7 +30,9 @@ public class AgregarEmailActivity extends AppCompatActivity {
 
         String mail = email.getText().toString();
 
-        Principal.emails.add(mail);
+        if(ayudante.emails == null)
+            ayudante.emails = new ArrayList<>();
+        ayudante.emails.add(mail);
 
 
 

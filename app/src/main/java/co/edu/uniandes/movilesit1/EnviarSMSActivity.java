@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.Camara;
 
 public class EnviarSMSActivity extends AppCompatActivity {
@@ -29,10 +30,14 @@ public class EnviarSMSActivity extends AppCompatActivity {
     private String nombreContacto;
     private String numeroTelefonico;
 
+    public Ayudante ayudante;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enviar_sms);
+
+        ayudante = Ayudante.darInstancia();
     }
 
     /**
@@ -43,9 +48,9 @@ public class EnviarSMSActivity extends AppCompatActivity {
             try{
                 String mensaje = "Las cámaras a instalar serán las siguientes:";
 
-                for(int i = 0; i < Principal.camarasReporte.size(); i++){
+                for(int i = 0; i < ayudante.camarasReporte.size(); i++){
 
-                    Camara camara = Principal.camarasReporte.get(i);
+                    Camara camara = ayudante.camarasReporte.get(i);
 
                     mensaje += "Cámara " + (i+1);
                     mensaje += "Código de Barras: " + camara.codigoBarras + "Resolución: "

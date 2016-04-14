@@ -16,12 +16,16 @@ import java.util.ArrayList;
 import co.edu.uniandes.movilesit1.Mensajes;
 import co.edu.uniandes.movilesit1.Principal;
 import co.edu.uniandes.movilesit1.R;
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.VerCamarasActivity;
+import co.edu.uniandes.movilesit1.web.Rest;
 
 
 public class PrincipalLectorActivity extends AppCompatActivity implements View.OnClickListener {
 
     // use a compound button so either checkbox or switch widgets work.
+    public Ayudante ayudante;
+
     private CompoundButton autoFocus;
     private CompoundButton useFlash;
     private TextView statusMessage;
@@ -118,17 +122,22 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
 
     public void enviarCodigoBarras(){
 
-        if(Principal.camarasActuales == null)
-            Principal.camarasActuales = new ArrayList<>();
+        if(ayudante.camarasActuales == null)
+            ayudante.camarasActuales = new ArrayList<>();
 
-        System.out.println(".................................. " + codigoBarras);
+        System.out.println(codigoBarras);
 
-        Principal.camarasActuales.clear();
-        Principal.camarasActuales.addAll(Principal.dbAdmin.buscarCamara(codigoBarras));
+        ayudante.camarasActuales.clear();
+        try{
+            Rest.buscarCamara(codigoBarras, ayudante.camarasActuales);
+        }catch(Exception e){
+            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm " + e.getMessage());
+            ayudante.camarasActuales.addAll(ayudante.dbAdmin.buscarCamara(codigoBarras));
+        }
 
-        System.out.println(Principal.camarasActuales.size());
+        System.out.println(ayudante.camarasActuales.size());
 
-        Mensajes.alertDialog(this, "Se encontraron " + Principal.camarasActuales.size() + " camaras");
+        Mensajes.alertDialog(this, "Se encontraron " + ayudante.camarasActuales.size() + " camaras");
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
 

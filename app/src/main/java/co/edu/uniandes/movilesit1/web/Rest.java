@@ -109,6 +109,8 @@ public class Rest  {
 
         String json = httpGet(Rest.CAMARAS);
 
+        System.out.println("-----------------" + json);
+
         JSONArray array = new JSONArray(json);
 
         for(int i = 0; i < array.length(); i++){
@@ -123,4 +125,14 @@ public class Rest  {
     }
 
 
+    public static void buscarCamara(String codigoBarras, ArrayList<Camara> camarasActuales) throws Exception {
+
+        String json = httpGet(Rest.CAMARAS + codigoBarras);
+
+        JSONObject objeto = new JSONObject(json);
+
+        Camara nuevo = new Camara(objeto);
+        camarasActuales.add(nuevo);
+
+    }
 }

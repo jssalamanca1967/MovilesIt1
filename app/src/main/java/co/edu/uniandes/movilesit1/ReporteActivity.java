@@ -10,20 +10,25 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.Camara;
 import co.edu.uniandes.movilesit1.modelo.InfoCamaraActivity;
 
 public class ReporteActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, DialogInterface.OnClickListener{
+
+    public Ayudante ayudante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporte);
 
-        Camara[] camaras = new Camara[Principal.camarasReporte.size()];
+        ayudante = Ayudante.darInstancia();
+
+        Camara[] camaras = new Camara[ayudante.camarasReporte.size()];
 
         for(int i = 0; i < camaras.length; i++){
-            camaras[i] = Principal.camarasReporte.get(i);
+            camaras[i] = ayudante.camarasReporte.get(i);
         }
 
         ListView lista = (ListView) findViewById(R.id.listaCamarasReporte);
@@ -55,7 +60,7 @@ public class ReporteActivity extends AppCompatActivity implements AdapterView.On
 
     public void generarReporte(View view){
 
-        if(Principal.camarasReporte.size() == 0){
+        if(ayudante.camarasReporte.size() == 0){
             Mensajes.alertDialog(this, "No se puede enviar un reporte cuando no se han escogido cámaras");
         }
         else {

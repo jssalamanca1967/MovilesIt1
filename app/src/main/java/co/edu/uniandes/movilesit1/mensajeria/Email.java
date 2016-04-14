@@ -16,9 +16,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
+
 public class Email {
 
-    public static void enviarCorreo(String mensaje, String[] destinatarios, Activity actividad) throws Exception {
+    public static void enviarCorreo(String mensaje, String[] destinatarios) throws Exception {
 
         final String username = "securecamerainstaller@gmail.com";
         final String password = "contrasenia.27";
@@ -54,6 +56,7 @@ public class Email {
                     InternetAddress.parse(destino));
             message.setSubject("Informe instalación");
             message.setText(mensaje);
+
 
             Transport.send(message);
 

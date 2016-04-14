@@ -33,16 +33,20 @@ public class InfoCamaraActivity extends AppCompatActivity {
 
     public Camara camara;
 
+    public Ayudante ayudante;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_camara);
 
+        ayudante = Ayudante.darInstancia();
+
         String pos = getIntent().getStringExtra("numero");
 
         int posicion = Integer.parseInt(pos);
 
-        camara = Principal.camarasActuales.get(posicion);
+        camara = ayudante.camarasActuales.get(posicion);
 
         codigoBarras = (TextView) findViewById(R.id.codigoBarras);
         videoQuality = (TextView) findViewById(R.id.videoQuality);
@@ -102,7 +106,7 @@ public class InfoCamaraActivity extends AppCompatActivity {
         }
         else{
 
-            Principal.camarasReporte.add(camara);
+            ayudante.camarasReporte.add(camara);
 
             seleccionada = true;
             boton.setText("Retirar del reporte");
@@ -118,8 +122,8 @@ public class InfoCamaraActivity extends AppCompatActivity {
 
         boolean rta = false;
 
-        for(int i = 0; i < Principal.camarasReporte.size(); i++){
-            if(Principal.camarasReporte.get(i).codigoBarras.equals(codigoBarras))
+        for(int i = 0; i < ayudante.camarasReporte.size(); i++){
+            if(ayudante.camarasReporte.get(i).codigoBarras.equals(codigoBarras))
                 rta = true;
         }
 
@@ -132,9 +136,9 @@ public class InfoCamaraActivity extends AppCompatActivity {
 
 
 
-        for(int i = 0; i < Principal.camarasReporte.size(); i++){
-            if(Principal.camarasReporte.get(i).codigoBarras.equals(codigoBarras))
-                Principal.camarasReporte.remove(i);
+        for(int i = 0; i < ayudante.camarasReporte.size(); i++){
+            if(ayudante.camarasReporte.get(i).codigoBarras.equals(codigoBarras))
+                ayudante.camarasReporte.remove(i);
         }
 
 
