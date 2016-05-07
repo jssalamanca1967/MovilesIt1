@@ -37,9 +37,9 @@
                 android:id="@+id/codigoBarrasLbl"
                 android:textStyle="bold"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/codigoBarras"
                 android:textSize="20dp"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="wrap_content"

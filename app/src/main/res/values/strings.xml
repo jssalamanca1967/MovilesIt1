@@ -44,5 +44,7 @@
     <string name="txt_nuevo_email">Agregar E-mail</string>
     <string name="aceptar">Aceptar</string>
 
+    <string name="bienvenidos">Bienvenido a Security Camera Installer</string>
+
 
 </resources>

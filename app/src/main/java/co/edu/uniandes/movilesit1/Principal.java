@@ -6,6 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import co.edu.uniandes.movilesit1.database.DBAdmin;
@@ -18,7 +26,6 @@ import co.edu.uniandes.movilesit1.web.Rest;
 public class Principal extends AppCompatActivity {
 
     public Ayudante ayudante;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +56,35 @@ public class Principal extends AppCompatActivity {
 
     public void crearDB() {
 
+        ayudante = Ayudante.darInstancia();
+
         ayudante.dbAdmin = new DBAdmin(getApplicationContext());
     }
 
     public void poblarDB() {
 
+        ayudante = Ayudante.darInstancia();
+
         ArrayList<Camara> lista = new ArrayList<>();
 
-        for(int i = 0; i < 30; i++){
-            Camara nueva = new Camara("123456" + i , "45MP" + i, "12" + i, "34" + i, "45" + i, "67" + i, "34Mt" + i, "45", "45", "324", "235ear", "zdfg", "sdf", "434");
-            lista.add(nueva);
-        }
 
-        Camara nueva = new Camara("AGMB90201011050" , "45MP", "18", "14" , "45", "28", "12m", "78", "23", "4", "4V", "23", "45", "4");
+        try {
+            JSONArray array = new JSONArray(ayudante.a);
+
+            for(int i = 0; i < array.length(); i++){
+                JSONObject objeto = array.getJSONObject(i);
+
+                Camara nuevo = new Camara(objeto);
+
+                lista.add(nuevo);
+
+            }
+
+            ayudante.dbAdmin.agregarCamaras(lista);
+
+        }catch (JSONException e) {
+            Mensajes.alertDialog(this, e.getMessage());
+        }
 
 
         ayudante.dbAdmin.agregarCamaras(lista);
@@ -69,6 +92,8 @@ public class Principal extends AppCompatActivity {
     }
 
     public void verCamaras(View view) {
+
+        ayudante = Ayudante.darInstancia();
 
         if(ayudante.camarasActuales == null)
             ayudante.camarasActuales = new ArrayList<>();
@@ -90,6 +115,8 @@ public class Principal extends AppCompatActivity {
     }
 
     public void verCamara(String codigoBarras){
+
+        ayudante = Ayudante.darInstancia();
 
         if(ayudante.camarasActuales == null)
             ayudante.camarasActuales = new ArrayList<>();

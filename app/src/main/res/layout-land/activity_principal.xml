@@ -24,72 +24,51 @@
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/ver_camaras" />-->
 
-
-
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            style="@style/AppTheme"
-            android:src="@mipmap/securitycamera2"
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" >
-
-    </ScrollView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leer código de barras"
-        android:onClick="leerCodigoBarras"
-        android:id="@+id/button9"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="52dp"
-        android:layout_alignEnd="@+id/scrollView" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ver camaras"
         android:id="@+id/ver_camaras"
         android:onClick="verCamaras"
-        android:layout_below="@+id/imageView"
-        android:layout_alignEnd="@+id/scrollView"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leer código de barras"
+        android:id="@+id/read_barcode"
+        android:onClick="leerCodigoBarras"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ver_camaras"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar Reporte"
+        android:id="@+id/enviar_reporte"
         android:onClick="enviarReporte"
-        android:id="@+id/button10"
-        android:layout_below="@+id/button9"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/read_barcode"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@mipmap/securitycamera2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bienvenidos"
-        android:id="@+id/textView5"
-        android:layout_alignEnd="@+id/scrollView"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"
-        android:textSize="20dp" />
-
+        android:id="@+id/textView4"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

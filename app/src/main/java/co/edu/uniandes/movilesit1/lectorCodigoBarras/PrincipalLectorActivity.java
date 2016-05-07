@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import co.edu.uniandes.movilesit1.Mensajes;
@@ -122,6 +124,8 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
 
     public void enviarCodigoBarras(){
 
+        ayudante = Ayudante.darInstancia();
+
         if(ayudante.camarasActuales == null)
             ayudante.camarasActuales = new ArrayList<>();
 
@@ -131,13 +135,12 @@ public class PrincipalLectorActivity extends AppCompatActivity implements View.O
         try{
             Rest.buscarCamara(codigoBarras, ayudante.camarasActuales);
         }catch(Exception e){
-            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm " + e.getMessage());
             ayudante.camarasActuales.addAll(ayudante.dbAdmin.buscarCamara(codigoBarras));
         }
 
         System.out.println(ayudante.camarasActuales.size());
 
-        Mensajes.alertDialog(this, "Se encontraron " + ayudante.camarasActuales.size() + " camaras");
+        Mensajes.toast(this, "Se encontraron " + ayudante.camarasActuales.size() + " camaras", true);
 
         Intent intent = new Intent(this, VerCamarasActivity.class);
 

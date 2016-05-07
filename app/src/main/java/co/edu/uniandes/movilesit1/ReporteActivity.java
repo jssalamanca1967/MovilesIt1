@@ -44,6 +44,8 @@ public class ReporteActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        ayudante = Ayudante.darInstancia();
+
         ListView lista = (ListView) findViewById(R.id.listaCamarasReporte);
 
         Camara item = (Camara) lista.getAdapter().getItem(position);
@@ -59,6 +61,8 @@ public class ReporteActivity extends AppCompatActivity implements AdapterView.On
     }
 
     public void generarReporte(View view){
+
+        ayudante = Ayudante.darInstancia();
 
         if(ayudante.camarasReporte.size() == 0){
             Mensajes.alertDialog(this, "No se puede enviar un reporte cuando no se han escogido cámaras");

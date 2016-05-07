@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import co.edu.uniandes.movilesit1.colaEmail.ColaEmail;
+import co.edu.uniandes.movilesit1.colaEmail.EmailAEnviar;
 import co.edu.uniandes.movilesit1.mensajeria.Email;
 import co.edu.uniandes.movilesit1.modelo.Ayudante;
 import co.edu.uniandes.movilesit1.modelo.Camara;
@@ -42,6 +44,8 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void enviarCorreo(View view) {
 
+        ayudante = Ayudante.darInstancia();
+
         String mensaje = "Las cámaras a instalar serán las siguientes:";
 
         for(int i = 0; i < ayudante.camarasReporte.size(); i++){
@@ -49,19 +53,19 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
             Camara camara = ayudante.camarasReporte.get(i);
 
             mensaje += "Cámara " + (i+1);
-            mensaje += "Código de Barras: " + camara.codigoBarras + "Resolución: "
-                    + camara.videoQuality + "Iluminación mínima: "
-                    + camara.minimumIllumination + "Modos de día - noche: "
-                    + camara.dayNightMode + "Compensación de luz de fondo: "
-                    + camara.backlightCompensation + "Ángulo de visión: "
-                    + camara.viewingAngle + "Distancia de visión nocturna: "
-                    + camara.nightVisionDistance + "Filtro de corte de infrarrojo: "
-                    + camara.iRCutFilter + "Interiores / Exteriores: "
-                    + camara.indoorOutdoor + "Consumo de energía: "
-                    + camara.operatingPower + "Temperatura de operación: "
-                    + camara.operationTemperature + "Material: "
-                    + camara.bodyConstruction + "Dimensiones: "
-                    + camara.cameraStandDimensions + "Peso: " + camara.cameraStandWeight;
+            mensaje += "Código de Barras: " + camara.codigoBarras + "\nResolución: "
+                    + camara.videoQuality + "\nIluminación mínima: "
+                    + camara.minimumIllumination + "\nModos de día - noche: "
+                    + camara.dayNightMode + "\nCompensación de luz de fondo: "
+                    + camara.backlightCompensation + "\nÁngulo de visión: "
+                    + camara.viewingAngle + "\nDistancia de visión nocturna: "
+                    + camara.nightVisionDistance + "\nFiltro de corte de infrarrojo: "
+                    + camara.iRCutFilter + "\nInteriores / Exteriores: "
+                    + camara.indoorOutdoor + "\nConsumo de energía: "
+                    + camara.operatingPower + "\nTemperatura de operación: "
+                    + camara.operationTemperature + "\nMaterial: "
+                    + camara.bodyConstruction + "\nDimensiones: "
+                    + camara.cameraStandDimensions + "\nPeso: " + camara.cameraStandWeight;
 
         }
 
@@ -74,7 +78,11 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
         try {
             Email.enviarCorreo(mensaje, email);
         } catch (Exception e) {
-            Mensajes.alertDialog(this, e.getMessage());
+            e.printStackTrace();
+            EmailAEnviar a = new EmailAEnviar(mensaje, email);
+            ColaEmail cola = ColaEmail.darInstancia();
+            cola.emailAEnviar.add(a);
+            Mensajes.alertDialog(this, "No se pudo enviar el e-mail, se enviará apenas se tenga conexión.");
         }
     }
 
@@ -86,6 +94,8 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void poblarLista(){
+
+        ayudante = Ayudante.darInstancia();
 
         String[] email = new String[ayudante.emails.size()];
 
@@ -107,6 +117,8 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        ayudante = Ayudante.darInstancia();
 
         String mail = ayudante.emails.get(position);
         // Use the Builder class for convenient dialog construction
