@@ -46,6 +46,10 @@
         </activity>
         <activity android:name=".SensoresActivity" >
         </activity>
+        <activity android:name=".PrincipalSensoresActivity" >
+        </activity>
+        <activity android:name=".AnalizarSensoresActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -28,7 +28,11 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
         ayudante = Ayudante.darInstancia();
 
-        ayudante.emails.add("js.salamanca1967@uniandes.edu.co");
+        if(ayudante.emails.size() == 0) {
+
+            ayudante.emails.add("js.salamanca1967@uniandes.edu.co");
+            ayudante.emails.add("johnsalas99@hotmail.com");
+        }
 
         poblarLista();
 
@@ -77,6 +81,9 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
         try {
             Email.enviarCorreo(mensaje, email);
+            Mensajes.toast(this,"Reporte enviado con éxito", true);
+            Intent intent = new Intent(this, Principal.class);
+            startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
             EmailAEnviar a = new EmailAEnviar(mensaje, email);

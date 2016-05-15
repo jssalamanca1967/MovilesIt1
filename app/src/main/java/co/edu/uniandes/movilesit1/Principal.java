@@ -140,13 +140,9 @@ public class Principal extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void magnetico(View view) {
+    public void evaluacion(View view) {
 
-        Intent intent = new Intent(this, SensoresActivity.class);
-
-        intent.putExtra("Tipo","Temperatura");
+        Intent intent = new Intent(this, PrincipalSensoresActivity.class);
         startActivity(intent);
     }
-
-
 }

@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import java.util.Properties;
 
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -40,8 +41,12 @@ public class Email {
 
         String destino = "";
 
+        Address[] destinos = new Address[destinatarios.length];
+
         for(int i = 0; i < destinatarios.length; i++){
-            destino += destinatarios[i];
+
+            destinos[i] = InternetAddress.parse(destinatarios[i])[0];
+
         }
 
         if(destinatarios.length == 0){
@@ -53,7 +58,7 @@ public class Email {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(destino));
+                    destinos);
             message.setSubject("Informe instalación");
             message.setText(mensaje);
 

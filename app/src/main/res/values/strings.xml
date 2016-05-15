@@ -46,6 +46,11 @@
 
     <string name="bienvenidos">Bienvenido a Security Camera Installer</string>
     <string name="nombre">Nombre</string>
+    <string name="texto_sensores_principal">Por favor seleccione una cámara para analizar:</string>
+    <string name="lbl_analizar">Seleccione el análisis que desea realizar</string>
+    <string name="luminosidad">Iluminación</string>
+    <string name="proximidad">Proximidad</string>
+    <string name="magnetismo">Interferencia electromagnética</string>
 
 
 </resources>

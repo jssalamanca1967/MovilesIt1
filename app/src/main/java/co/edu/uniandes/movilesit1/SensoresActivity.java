@@ -1,12 +1,16 @@
 package co.edu.uniandes.movilesit1;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class SensoresActivity extends AppCompatActivity implements SensorEventListener{
@@ -22,9 +26,11 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     private float gravity[] = new float[3];
     private float magnetic[] = new float[3];
 
-    private TextView txtX;
+    private float y;
+
     private TextView txtY;
-    private TextView txtZ;
+    private TextView txtResultado;
+    private boolean yaValio;
 
 
     @Override
@@ -32,9 +38,10 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensores);
 
-        txtX = (TextView) findViewById(R.id.txtX);
+        yaValio = false;
+
         txtY = (TextView) findViewById(R.id.txtY);
-        txtZ = (TextView) findViewById(R.id.txtZ);
+        txtResultado = (TextView) findViewById(R.id.txtResultado);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -44,14 +51,12 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         acelerometro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
 
-
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        yaValio = false;
         sensorManager.registerListener(this, magnetismo, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -80,10 +85,23 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
             A_W[1] = R[3] * A_D[0] + R[4] * A_D[1] + R[5] * A_D[2];
             A_W[2] = R[6] * A_D[0] + R[7] * A_D[1] + R[8] * A_D[2];
 
+            y = A_W[1];
 
-            txtX.setText("" + A_W[0]);
-            txtY.setText("" + A_W[1]);
-            txtZ.setText("" + A_W[2]);
+            // Y está en microteslas
+
+            txtY.setText("" + y + " μT");
+
+            if(y >= 1500){
+                txtResultado.setText("NO COLOCAR");
+                txtResultado.setTextColor(Color.rgb(255,0,0));
+                yaValio = true;
+            }
+            else{
+                if(!yaValio){
+                    txtResultado.setText("COLOCAR");
+                    txtResultado.setTextColor(Color.rgb(0,255,0));
+                }
+            }
 
         }
     }
@@ -100,5 +118,11 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         super.onResume();
         sensorManager.registerListener(this, magnetismo, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    public void reiniciar(View view) {
+
+        yaValio = false;
+
     }
 }

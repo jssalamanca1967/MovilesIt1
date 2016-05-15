@@ -29,16 +29,9 @@ public class ColaEmail implements ConnectivityManager.OnNetworkActiveListener {
 
     @Override
     public void onNetworkActive() {
-
-
-
         if(emailAEnviar.size() > 0){
-
             ThreadEnviarCola thread = new ThreadEnviarCola();
-
             thread.start();
-
         }
-
     }
 }
