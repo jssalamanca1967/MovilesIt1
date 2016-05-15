@@ -26,6 +26,8 @@ public class InfoCamaraActivity extends AppCompatActivity {
     public TextView bodyConstruction;
     public TextView cameraStandDimensions;
     public TextView cameraStandWeight;
+    public TextView nombre;
+
 
     public Button boton;
 
@@ -48,6 +50,7 @@ public class InfoCamaraActivity extends AppCompatActivity {
 
         camara = ayudante.camarasActuales.get(posicion);
 
+        nombre = (TextView) findViewById(R.id.nombre);
         codigoBarras = (TextView) findViewById(R.id.codigoBarras);
         videoQuality = (TextView) findViewById(R.id.videoQuality);
         minimumIllumination = (TextView) findViewById(R.id.minimumIllumination);
@@ -64,6 +67,7 @@ public class InfoCamaraActivity extends AppCompatActivity {
         cameraStandWeight = (TextView) findViewById(R.id.cameraStandWeight);
         boton = (Button) findViewById(R.id.button);
 
+        nombre.setText(camara.nombre);
         codigoBarras.setText(camara.codigoBarras);
         videoQuality.setText(camara.videoQuality);
         minimumIllumination.setText(camara.minimumIllumination);

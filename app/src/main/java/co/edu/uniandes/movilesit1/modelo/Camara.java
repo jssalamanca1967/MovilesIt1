@@ -22,9 +22,13 @@ public class Camara {
     public final static String BODYCONSTRUCTION = "bodyConstruction";
     public final static String CAMERASTANDDIMENSIONS = "cameraStandDimensions";
     public final static String CAMERASTANDWEIGHT = "cameraStandWeight";
+    public final static String NOMBRE = "nombre";
+
 
 
     public boolean seleccionadaReporte;
+
+    public String nombre;
 
     public String codigoBarras;
 
@@ -94,6 +98,7 @@ public class Camara {
     public String cameraStandWeight;
 
     public Camara(JSONObject camara) throws JSONException {
+        nombre = camara.getString("nombre");
         codigoBarras = camara.getString("codigoBarras");
         videoQuality = camara.getString("videoQuality");
         minimumIllumination = camara.getString("minimumIllumination");
@@ -111,11 +116,13 @@ public class Camara {
     }
 
 
-    public Camara(String pCodigoBarras, String pvideoQuality,String pminimumIllumination,String pdayNightMode,
+    public Camara(String pNombre, String pCodigoBarras, String pvideoQuality,
+                  String pminimumIllumination,String pdayNightMode,
                   String pbacklightCompensation,String pviewingAngle,String pnightVisionDistance,
                   String piRCutFilter,String pindoorOutdoor,String poperatingPower, String poperationTemperature,
                   String pbodyConstruction,String pcameraStandDimensions, String pcameraStandWeight){
 
+        nombre = pNombre;
         codigoBarras = pCodigoBarras;
         videoQuality = pvideoQuality;
         minimumIllumination = pminimumIllumination;
@@ -143,7 +150,7 @@ public class Camara {
 
 
     public String toString(){
-        return codigoBarras;
+        return nombre;
     }
 
 

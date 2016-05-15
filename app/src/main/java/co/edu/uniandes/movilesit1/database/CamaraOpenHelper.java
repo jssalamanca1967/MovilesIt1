@@ -19,7 +19,8 @@ public class CamaraOpenHelper extends SQLiteOpenHelper {
     private static final String COMA = ",";
 
 
-    private static final String crearTabla = "CREATE TABLE " + CAMARA_TABLE_NAME + "(" + Camara.CODIGOBARRAS + TEXT + PK + COMA
+    private static final String crearTabla = "CREATE TABLE " + CAMARA_TABLE_NAME + "(" +
+            Camara.NOMBRE + TEXT + COMA + Camara.CODIGOBARRAS + TEXT + PK + COMA
             + Camara.VIDEOQUALITY + TEXT + COMA + Camara.MINIMUMILLUMINATION + TEXT + COMA +
             Camara.DAYNIGHTMODE + TEXT + COMA + Camara.BACKLIGHTCOMPENSATION + TEXT + COMA +
             Camara.VIEWINGANGLE + TEXT + COMA + Camara.NIGHTVISIONDISTANCE + TEXT + COMA +

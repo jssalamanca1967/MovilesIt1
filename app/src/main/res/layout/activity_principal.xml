@@ -50,37 +50,6 @@
 
     </ScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leer código de barras"
-        android:onClick="leerCodigoBarras"
-        android:id="@+id/button9"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="52dp"
-        android:layout_alignEnd="@+id/scrollView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver camaras"
-        android:id="@+id/ver_camaras"
-        android:onClick="verCamaras"
-        android:layout_below="@+id/imageView"
-        android:layout_alignEnd="@+id/scrollView"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar Reporte"
-        android:onClick="enviarReporte"
-        android:id="@+id/button10"
-        android:layout_below="@+id/button9"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/scrollView" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,6 +59,56 @@
         android:layout_alignTop="@+id/imageView"
         android:layout_toEndOf="@+id/imageView"
         android:textSize="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver camaras"
+            android:id="@+id/ver_camaras"
+            android:onClick="verCamaras"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leer código de barras"
+            android:onClick="leerCodigoBarras"
+            android:id="@+id/button9"
+            android:layout_below="@+id/ver_camaras"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar Reporte"
+            android:onClick="enviarReporte"
+            android:id="@+id/button10"
+            android:layout_below="@+id/button9"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magnético"
+            android:id="@+id/button8"
+            android:onClick="magnetico"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

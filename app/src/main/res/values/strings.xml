@@ -45,6 +45,7 @@
     <string name="aceptar">Aceptar</string>
 
     <string name="bienvenidos">Bienvenido a Security Camera Installer</string>
+    <string name="nombre">Nombre</string>
 
 
 </resources>

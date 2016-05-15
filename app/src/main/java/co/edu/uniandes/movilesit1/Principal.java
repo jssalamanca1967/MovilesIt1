@@ -1,6 +1,7 @@
 package co.edu.uniandes.movilesit1;
 
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -138,4 +139,14 @@ public class Principal extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    public void magnetico(View view) {
+
+        Intent intent = new Intent(this, SensoresActivity.class);
+
+        intent.putExtra("Tipo","Temperatura");
+        startActivity(intent);
+    }
+
+
 }
