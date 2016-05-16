@@ -1,8 +1,6 @@
 package co.edu.uniandes.movilesit1;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,20 +11,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class SensoresActivity extends AppCompatActivity implements SensorEventListener{
+import co.edu.uniandes.movilesit1.modelo.Ayudante;
+import co.edu.uniandes.movilesit1.modelo.Camara;
+
+public class SensoresActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor magnetismo;
     private Sensor acelerometro;
+    private Sensor proximidad;
+    private Sensor luz;
 
     private static final int TEST_GRAV = Sensor.TYPE_ACCELEROMETER;
     private static final int TEST_MAG = Sensor.TYPE_MAGNETIC_FIELD;
+    private static final int TEST_PROX = Sensor.TYPE_PROXIMITY;
+    private static final int TEST_LUZ = Sensor.TYPE_LIGHT;
 
     private final float alpha = (float) 0.8;
     private float gravity[] = new float[3];
     private float magnetic[] = new float[3];
 
     private float y;
+    private int minLux = 0;
+    private int currentLux = 0;
+    private int maxLux = 0;
 
     private TextView txtY;
     private TextView txtResultado;
@@ -79,8 +87,8 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
             float[] R = new float[9];
             float[] I = new float[9];
             SensorManager.getRotationMatrix(R, I, gravity, magnetic);
-            float [] A_D = event.values.clone();
-            float [] A_W = new float[3];
+            float[] A_D = event.values.clone();
+            float[] A_W = new float[3];
             A_W[0] = R[0] * A_D[0] + R[1] * A_D[1] + R[2] * A_D[2];
             A_W[1] = R[3] * A_D[0] + R[4] * A_D[1] + R[5] * A_D[2];
             A_W[2] = R[6] * A_D[0] + R[7] * A_D[1] + R[8] * A_D[2];
@@ -91,21 +99,19 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
             txtY.setText("" + y + " μT");
 
-            if(y >= 1500){
+            if (y >= 1500) {
                 txtResultado.setText("NO COLOCAR");
-                txtResultado.setTextColor(Color.rgb(255,0,0));
+                txtResultado.setTextColor(Color.rgb(255, 0, 0));
                 yaValio = true;
-            }
-            else{
-                if(!yaValio){
+            } else {
+                if (!yaValio) {
                     txtResultado.setText("COLOCAR");
-                    txtResultado.setTextColor(Color.rgb(0,255,0));
+                    txtResultado.setTextColor(Color.rgb(0, 255, 0));
                 }
             }
 
         }
     }
-
 
 
     @Override
@@ -115,7 +121,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
     @Override
     protected void onPause() {
-        super.onResume();
+        super.onPause();
         sensorManager.registerListener(this, magnetismo, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -126,3 +132,4 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
     }
 }
+

@@ -26,15 +26,20 @@ public class AnalizarSensoresActivity extends AppCompatActivity {
     public void magnetismo(View view) {
 
         Intent intent = new Intent(this, SensoresActivity.class);
-
-        intent.putExtra("Tipo","Temperatura");
         startActivity(intent);
 
     }
 
     public void proximidad(View view) {
-    }
+        Intent intent = new Intent(this, SensorProximidadActivity.class);
+        startActivity(intent);
+  }
+
+
 
     public void luminosidad(View view) {
+        Intent intent = new Intent(this, SensorLuzActivity.class);
+        startActivity(intent);
+
     }
 }

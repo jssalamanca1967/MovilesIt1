@@ -50,6 +50,10 @@
         </activity>
         <activity android:name=".AnalizarSensoresActivity" >
         </activity>
+        <activity android:name=".SensorLuzActivity" >
+        </activity>
+        <activity android:name=".SensorProximidadActivity" >
+        </activity>
     </application>
 
 </manifest>

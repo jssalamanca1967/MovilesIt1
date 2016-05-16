@@ -7,7 +7,6 @@ package co.edu.uniandes.movilesit1.mensajeria;
 import android.app.Activity;
 
 import java.util.Properties;
-
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
