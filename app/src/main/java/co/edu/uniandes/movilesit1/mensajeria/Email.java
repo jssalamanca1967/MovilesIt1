@@ -22,6 +22,8 @@ public class Email {
 
     public static void enviarCorreo(String mensaje, String[] destinatarios) throws Exception {
 
+
+
         final String username = "securecamerainstaller@gmail.com";
         final String password = "contrasenia.27";
 
