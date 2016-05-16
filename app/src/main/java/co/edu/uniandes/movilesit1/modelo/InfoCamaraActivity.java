@@ -138,8 +138,6 @@ public class InfoCamaraActivity extends AppCompatActivity {
 
     public void eliminarEnReporte(String codigoBarras){
 
-
-
         for(int i = 0; i < ayudante.camarasReporte.size(); i++){
             if(ayudante.camarasReporte.get(i).codigoBarras.equals(codigoBarras))
                 ayudante.camarasReporte.remove(i);

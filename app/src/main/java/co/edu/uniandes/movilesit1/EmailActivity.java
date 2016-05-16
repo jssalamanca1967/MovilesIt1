@@ -50,13 +50,13 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
 
         ayudante = Ayudante.darInstancia();
 
-        String mensaje = "Las cámaras a instalar serán las siguientes:";
+        String mensaje = "Las cámaras a instalar serán las siguientes:\n\n";
 
         for(int i = 0; i < ayudante.camarasReporte.size(); i++){
 
             Camara camara = ayudante.camarasReporte.get(i);
 
-            mensaje += "Cámara " + (i+1);
+            mensaje += "Cámara " + (i+1)+"\n";
             mensaje += "Código de Barras: " + camara.codigoBarras + "\nResolución: "
                     + camara.videoQuality + "\nIluminación mínima: "
                     + camara.minimumIllumination + "\nModos de día - noche: "
@@ -69,7 +69,7 @@ public class EmailActivity extends AppCompatActivity implements AdapterView.OnIt
                     + camara.operatingPower + "\nTemperatura de operación: "
                     + camara.operationTemperature + "\nMaterial: "
                     + camara.bodyConstruction + "\nDimensiones: "
-                    + camara.cameraStandDimensions + "\nPeso: " + camara.cameraStandWeight;
+                    + camara.cameraStandDimensions + "\nPeso: " + camara.cameraStandWeight + "\n\n";
 
         }
 

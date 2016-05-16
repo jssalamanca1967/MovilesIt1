@@ -79,7 +79,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Leer código de barras"
+            android:text="Buscar cámara"
             android:onClick="leerCodigoBarras"
             android:id="@+id/button9"
             android:layout_below="@+id/ver_camaras"

@@ -42,6 +42,30 @@ public class ReporteActivity extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
+    public void onResume(){
+
+        super.onResume();
+
+        ayudante = Ayudante.darInstancia();
+
+        Camara[] camaras = new Camara[ayudante.camarasReporte.size()];
+
+        for(int i = 0; i < camaras.length; i++){
+            camaras[i] = ayudante.camarasReporte.get(i);
+        }
+
+        ListView lista = (ListView) findViewById(R.id.listaCamarasReporte);
+
+        ArrayAdapter<Camara> adapter = new ArrayAdapter<Camara>(this,
+                android.R.layout.simple_list_item_1, camaras);
+
+        lista.setOnItemClickListener(this);
+
+        lista.setAdapter(adapter);
+
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         ayudante = Ayudante.darInstancia();
